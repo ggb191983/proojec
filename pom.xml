@@ -4,10 +4,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>es.proojec</groupId>
-	<artifactId>proojec-web</artifactId>
+	<artifactId>proojec</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<modules>
-		<module>layers/controller-layer</module>
+		<module>layers/web-layer</module>
 		<module>layers/store-layer</module>
 		<module>layers/model-layer</module>
 		<module>layers/service-layer</module>
@@ -15,7 +15,7 @@
 	</modules>
 	<packaging>pom</packaging>
 
-	<name>proojec-web</name>
+	<name>proojec</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
