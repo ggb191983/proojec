@@ -19,7 +19,7 @@ public class ProojecWebApplication {
 
 	public static void main(String[] args) {
 		SpringApplication app = new SpringApplication(ProojecWebApplication.class);
-		app.run();
+		app.run(args);
 	}
 
 	public void run(String... args) throws Exception {
