@@ -1,5 +1,7 @@
 package es.proojec.domain.entities;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.util.Date;
 
 /**
@@ -15,4 +17,8 @@ public class Application {
     private Date startDate;
     private Date endDate;
     private String tutor;
+
+    @ManyToOne
+    @JoinColumn(name = "challenge_application_id")
+    private Challenge challenge;
 }

@@ -38,8 +38,6 @@ public class User {
         this.email = lastname;
     }
 
-
-
     @Override
     public String toString() {
         return "Person [userName=" + this.userName + ", email=" + this.email

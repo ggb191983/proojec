@@ -1,5 +1,11 @@
 package es.proojec.domain.entities;
 
+import es.proojec.domain.models.StudiesType;
+
+import javax.persistence.CascadeType;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.OneToMany;
 import java.util.Date;
 import java.util.List;
 
@@ -18,11 +24,15 @@ public class Challenge {
     private String video;
     private Date createdAt;
     private Date endCandidatureDate;
-    private Date endChallengeDate
+    private Date endChallengeDate;
     private Label labels;
     private User author;
-    private StudiesType: {type: String, enum: ['Degree', 'Master', 'Doctorate Degree']},
-    private List<Candidature> candidaturesAssigned;
+
+    @Enumerated(EnumType.STRING)
+    private StudiesType studiesType;
+
+    @OneToMany(mappedBy = "challenge", cascade = CascadeType.ALL)
     private List<Application> applications;
+
     private int rating;
 }
