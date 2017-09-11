@@ -1,6 +1,6 @@
 package es.proojec.service;
 
-import es.proojec.domain.entities.User;
+import es.proojec.store.entities.User;
 
 /**
  * Created by ggb191983 on 06/09/2017.

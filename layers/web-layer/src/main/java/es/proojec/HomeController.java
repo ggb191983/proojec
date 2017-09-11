@@ -1,11 +1,9 @@
 package es.proojec;
 
 import es.proojec.service.UserService;
-import es.proojec.store.UserRepository;
-import es.proojec.domain.entities.User;
+import es.proojec.store.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -18,9 +16,8 @@ public class HomeController {
     protected UserService userService;
 
     @RequestMapping("/")
-    @ResponseBody
     String home() {
         User p = userService.findAll().iterator().next();
-        return "Hello " + p.getName() + "!";
+        return "Hello " + p.getUserName()+ "!";
     }
 }

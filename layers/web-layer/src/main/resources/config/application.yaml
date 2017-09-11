@@ -18,6 +18,15 @@ spring:
        password: Irl4nd42014
        driver-class-name: com.mysql.jdbc.Driver
 
+auth0:
+  domain: proojec.eu.auth0.com
+  issuer: https://proojec.eu.auth0.com/api/v2/
+  clientId: BZPVxMgjhec3SjeGb7MOeetZnmQNfkqF
+  clientSecret: Xok4lqMUc53slE33-MsJVhVTQrsI0mjBiuBFpmBCHKXwq2iG3B5PtYTy6Wj0mBQo
+  onLogoutRedirectTo: /login
+  loginCallback: /callback
+  apiAudience: Auth0 Management API
+
 ---
 
 spring:
