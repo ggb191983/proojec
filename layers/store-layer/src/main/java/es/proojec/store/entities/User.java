@@ -1,5 +1,6 @@
 package es.proojec.store.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.ReadOnlyProperty;
 
 import javax.persistence.*;
@@ -18,9 +19,12 @@ public class User implements Serializable {
     @GeneratedValue
     @ReadOnlyProperty
     private Long id;
-    private String userName;
+    private String username;
+    private String firstname;
+    private String lastname;
     @Column(unique=true)
     private String email;
+    @JsonIgnore
     private String password;
     private String description;
 
@@ -44,12 +48,28 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getEmail() {
@@ -68,12 +88,12 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public String getFacebookURL() {
-        return facebookURL;
+    public String getDescription() {
+        return description;
     }
 
-    public void setFacebookURL(String facebookURL) {
-        this.facebookURL = facebookURL;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getAccessToken() {
@@ -84,12 +104,12 @@ public class User implements Serializable {
         this.accessToken = accessToken;
     }
 
-    public String getDescription() {
-        return description;
+    public String getFacebookURL() {
+        return facebookURL;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setFacebookURL(String facebookURL) {
+        this.facebookURL = facebookURL;
     }
 
     public String getLinkedinURL() {

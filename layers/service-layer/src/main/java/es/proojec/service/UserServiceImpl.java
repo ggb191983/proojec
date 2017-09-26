@@ -29,6 +29,16 @@ public class UserServiceImpl extends AbstractManager<UserRepository, User, Long>
     }
 
     @Override
+    public User findByEmail(String email) {
+        return repository.findByEmail(email);
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        return repository.findByUsername(username);
+    }
+
+    @Override
     public Iterable<User> findAll() {
         return repository.findAll();
     }

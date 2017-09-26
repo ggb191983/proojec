@@ -10,5 +10,9 @@ public interface UserService {
 
     User find(Long id);
 
+    User findByEmail(String email);
+
     Iterable<User> findAll();
+
+    User findByUsername(String username);
 }

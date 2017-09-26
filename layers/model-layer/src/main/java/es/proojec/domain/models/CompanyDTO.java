@@ -5,6 +5,13 @@ package es.proojec.domain.models;
  */
 public class CompanyDTO extends ObjectDTO {
 
-    private Long id;
     private ThesisDTO favouriteThesis;
+
+    public ThesisDTO getFavouriteThesis() {
+        return favouriteThesis;
+    }
+
+    public void setFavouriteThesis(ThesisDTO favouriteThesis) {
+        this.favouriteThesis = favouriteThesis;
+    }
 }

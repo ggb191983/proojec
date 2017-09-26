@@ -9,7 +9,6 @@ import java.io.Serializable;
  * Created by ggb191983 on 07/09/2017.
  */
 @Entity
-@Table(name = "companies")
 @DiscriminatorValue(value = "Company")
 public class Company extends User implements Serializable {
 

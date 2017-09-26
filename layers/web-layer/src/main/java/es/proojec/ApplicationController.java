@@ -5,12 +5,11 @@ import es.proojec.domain.models.ApplicationDTO;
 import es.proojec.service.ApplicationServiceImpl;
 import es.proojec.store.entities.Application;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by ggb191983 on 09/09/2017.
@@ -25,18 +24,17 @@ public class ApplicationController extends AbstractController<ApplicationService
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/application/{id}")
-    ResponseEntity<ApplicationDTO> home(@PathVariable Long id) {
+    @ResponseBody
+    ApplicationDTO home(@PathVariable Long id) {
         Application p = getManager().find(id);
-        if (p == null) {
-            return null;
-        }
-        return new ResponseEntity<>(super.convertToDto(p), HttpStatus.FOUND);
+        return super.convertToDto(p);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/application")
-    public ResponseEntity<Collection<ApplicationDTO>> getAllApplications() {
-        Iterable<Application> applications = getManager().findAll();
-        return new ResponseEntity<>(super.convertToDto(Lists.newArrayList(applications)), HttpStatus.FOUND);
+    @ResponseBody
+    public Collection<ApplicationDTO> getAllApplications() {
+        List<Application> applications = Lists.newArrayList(getManager().findAll());
+        return super.convertToDto(applications);
     }
 
 }

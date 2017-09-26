@@ -1,7 +1,6 @@
 package es.proojec;
 
 import es.proojec.service.UserService;
-import es.proojec.store.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +16,6 @@ public class HomeController {
 
     @RequestMapping("/")
     String home() {
-        User p = userService.findAll().iterator().next();
-        return "Hello " + p.getUserName()+ "!";
+        return "redirect:swagger-ui.html";
     }
 }

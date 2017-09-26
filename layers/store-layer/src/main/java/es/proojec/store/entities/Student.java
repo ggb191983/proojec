@@ -10,8 +10,6 @@ import java.io.Serializable;
  * Created by ggb191983 on 07/09/2017.
  */
 @Entity
-@Table(name = "students")
-@DiscriminatorColumn(name = "user_type")
 @DiscriminatorValue(value = "Student")
 public class Student extends User implements Serializable {
 

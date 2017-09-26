@@ -3,11 +3,8 @@ package es.proojec;
 import es.proojec.domain.models.UserDTO;
 import es.proojec.service.UserServiceImpl;
 import es.proojec.store.entities.User;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
 
@@ -22,10 +19,11 @@ public class UserController extends AbstractController<UserServiceImpl, UserDTO,
         super(managerClass, UserDTO.class, User.class);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/user")
-    ResponseEntity<UserDTO> home() {
-        User p = getManager().findAll().iterator().next();
-        return new ResponseEntity<>(super.convertToDto(p), HttpStatus.FOUND);
+    @RequestMapping(method = RequestMethod.GET, value = "/user", produces = MediaType.APPLICATION_JSON_VALUE )
+    @ResponseBody
+    public UserDTO getUser(@RequestParam("nick") String nick) {
+        User p = getManager().findByEmail(nick);
+        return super.convertToDto(p);
     }
 
   //  @ApiImplicitParams({
@@ -36,8 +34,9 @@ public class UserController extends AbstractController<UserServiceImpl, UserDTO,
    //                 paramType = "header"),
    // })
     @RequestMapping(method = RequestMethod.GET, value = "/signup")
-    ResponseEntity<UserDTO> signup() {
+    @ResponseBody
+    UserDTO signup() {
         User p = getManager().findAll().iterator().next();
-        return new ResponseEntity<>(super.convertToDto(p), HttpStatus.FOUND);
+        return super.convertToDto(p);
     }
 }

@@ -1,10 +1,13 @@
 package es.proojec.service;
 
+import com.google.common.collect.Lists;
 import es.proojec.store.entities.Category;
 import es.proojec.store.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * Created by ggb191983 on 09/09/2017.
@@ -29,7 +32,7 @@ public class CategoryServiceImpl extends AbstractManager<CategoryRepository, Cat
     }
 
     @Override
-    public Iterable<Category> findAll() {
-        return repository.findAll();
+    public List<Category> findAll() {
+        return Lists.newArrayList(repository.findAll());
     }
 }
