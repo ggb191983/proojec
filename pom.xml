@@ -7,6 +7,7 @@
     <artifactId>proojec</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <modules>
+        <module>layers/front-end-layer</module>
         <module>layers/web-layer</module>
         <module>layers/store-layer</module>
         <module>layers/model-layer</module>
@@ -30,10 +31,17 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <maven-compiler.version>3.6.0</maven-compiler.version>
+        <skip.check>true</skip.check>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>es.proojec</groupId>
+                <artifactId>front-end</artifactId>
+                <version>${project.version}</version>
+                <scope>runtime</scope>
+            </dependency>
             <dependency>
                 <groupId>es.proojec</groupId>
                 <artifactId>store-layer</artifactId>
@@ -81,6 +89,11 @@
                 <artifactId>modelmapper</artifactId>
                 <version>1.1.0</version>
             </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-jsr310</artifactId>
+                <version>2.9.2</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -116,14 +129,88 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven-compiler.version}</version>
                     <configuration>
+                        <!--<compilerId>javac-with-errorprone</compilerId>-->
+                        <!--<forceJavacCompilerUse>true</forceJavacCompilerUse>-->
                         <source>${java.version}</source>
                         <target>${java.version}</target>
                         <!-- IMPORTANT -->
                         <useIncrementalCompilation>false</useIncrementalCompilation>
+                        <verbose>true</verbose>
+                        <debug>true</debug>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>2.17</version>
+                    <executions>
+                        <execution>
+                            <id>validate</id>
+                            <phase>validate</phase>
+                            <configuration>
+                                <encoding>UTF-8</encoding>
+                                <consoleOutput>true</consoleOutput>
+                                <failsOnError>true</failsOnError>
+                                <linkXRef>false</linkXRef>
+                                <skip>${skip.check}</skip>
+                            </configuration>
+                            <goals>
+                                <goal>check</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.puppycrawl.tools</groupId>
+                            <artifactId>checkstyle</artifactId>
+                            <version>7.6</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-pmd-plugin</artifactId>
+                    <version>3.8</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>check</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>
     </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>2.17</version>
+                <configuration>
+                    <configLocation>checkstyle.xml</configLocation>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>3.8</version>
+            </plugin>
+        </plugins>
+    </reporting>
+
+    <profiles>
+        <profile>
+            <id>code-check</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <skip.check>false</skip.check>
+            </properties>
+        </profile>
+    </profiles>
 
 </project>
