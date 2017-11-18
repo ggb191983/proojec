@@ -1,6 +1,6 @@
 package es.proojec.domain.models;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * Created by ggb191983 on 08/09/2017.
@@ -8,7 +8,7 @@ import java.util.Date;
 public class CommentDTO extends ObjectDTO {
 
     private String content;
-    private Date createdAt;
+    private LocalDateTime createdAt;
     private UserDTO user;
     private ChallengeDTO challenge;
     private ThesisDTO thesis;
@@ -21,11 +21,11 @@ public class CommentDTO extends ObjectDTO {
         this.content = content;
     }
 
-    public Date getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 

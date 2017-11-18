@@ -5,7 +5,7 @@ import org.springframework.data.annotation.ReadOnlyProperty;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -27,9 +27,8 @@ public class Thesis implements Serializable {
     private String summary;
     private String link;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "create_at")
-    private Date createAt;
+    private LocalDateTime createAt;
 
     private int rating;
 
@@ -53,6 +52,14 @@ public class Thesis implements Serializable {
 
     @OneToMany(mappedBy = "thesis", cascade = CascadeType.ALL)
     private List<Comment> comments;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;
@@ -102,11 +109,11 @@ public class Thesis implements Serializable {
         this.link = link;
     }
 
-    public Date getCreateAt() {
+    public LocalDateTime getCreateAt() {
         return createAt;
     }
 
-    public void setCreateAt(Date createAt) {
+    public void setCreateAt(LocalDateTime createAt) {
         this.createAt = createAt;
     }
 

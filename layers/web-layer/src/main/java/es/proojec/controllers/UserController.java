@@ -1,4 +1,4 @@
-package es.proojec;
+package es.proojec.controllers;
 
 import es.proojec.domain.models.UserDTO;
 import es.proojec.service.UserServiceImpl;

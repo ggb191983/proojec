@@ -19,6 +19,7 @@ public class User implements Serializable {
     @GeneratedValue
     @ReadOnlyProperty
     private Long id;
+
     private String username;
     private String firstname;
     private String lastname;

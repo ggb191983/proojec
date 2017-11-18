@@ -21,6 +21,16 @@ public class Company extends User implements Serializable {
     @JoinColumn(name="thesis_id", foreignKey = @ForeignKey(name = "fk_user_thesis"))
     private Thesis favouriteThesis;
 
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Thesis getFavouriteThesis() {
         return favouriteThesis;
     }

@@ -28,11 +28,35 @@ public class Label implements Serializable {
     @JoinColumn(name="thesis_id", foreignKey = @ForeignKey(name = "fk_label_thesis"))
     private Thesis thesis;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Challenge getChallenge() {
+        return challenge;
+    }
+
+    public void setChallenge(Challenge challenge) {
+        this.challenge = challenge;
+    }
+
+    public Thesis getThesis() {
+        return thesis;
+    }
+
+    public void setThesis(Thesis thesis) {
+        this.thesis = thesis;
     }
 }

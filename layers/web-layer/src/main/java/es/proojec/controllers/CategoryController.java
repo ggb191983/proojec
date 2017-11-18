@@ -1,4 +1,4 @@
-package es.proojec;
+package es.proojec.controllers;
 
 import com.google.common.collect.Lists;
 import es.proojec.domain.models.CategoryDTO;

@@ -4,7 +4,7 @@ import org.springframework.data.annotation.ReadOnlyProperty;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * Created by ggb191983 on 07/09/2017.
@@ -20,9 +20,8 @@ public class Comment implements Serializable {
 
     private String content;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "create_at")
-    private Date createdAt;
+    private LocalDateTime createdAt;
 
     @OneToOne(fetch= FetchType.LAZY)
     @JoinColumn(name="user_id", foreignKey = @ForeignKey(name = "fk_comment_user"))
@@ -36,6 +35,14 @@ public class Comment implements Serializable {
     @JoinColumn(name="thesis_id", foreignKey = @ForeignKey(name = "fk_comment_thesis"))
     private Thesis thesis;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getContent() {
         return content;
     }
@@ -44,11 +51,11 @@ public class Comment implements Serializable {
         this.content = content;
     }
 
-    public Date getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 

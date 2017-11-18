@@ -2,7 +2,7 @@ package es.proojec.domain.models;
 
 import es.proojec.domain.models.enums.StudiesType;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -16,7 +16,7 @@ public class ThesisDTO extends ObjectDTO {
     private String video;
     private String summary;
     private String link;
-    private Date createAt;
+    private LocalDateTime createAt;
     private int rating;
     private StudiesType studiesType;
     private CategoryDTO category;
@@ -73,11 +73,11 @@ public class ThesisDTO extends ObjectDTO {
         this.link = link;
     }
 
-    public Date getCreateAt() {
+    public LocalDateTime getCreateAt() {
         return createAt;
     }
 
-    public void setCreateAt(Date createAt) {
+    public void setCreateAt(LocalDateTime createAt) {
         this.createAt = createAt;
     }
 

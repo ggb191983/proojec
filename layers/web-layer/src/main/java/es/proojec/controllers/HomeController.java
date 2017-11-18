@@ -1,4 +1,4 @@
-package es.proojec;
+package es.proojec.controllers;
 
 import es.proojec.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

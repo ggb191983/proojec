@@ -32,6 +32,16 @@ public class Student extends User implements Serializable {
     @JoinColumn(name="challenge_id", foreignKey = @ForeignKey(name = "fk_student_challenge"))
     private Challenge favouriteChallenges;
 
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }

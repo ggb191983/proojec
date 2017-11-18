@@ -7,8 +7,8 @@ import java.util.List;
  */
 public class UserDTO extends ObjectDTO {
 
-    private String userName;
     private String email;
+    private String username;
     private String password;
     private String description;
     private String accessToken;
@@ -16,12 +16,12 @@ public class UserDTO extends ObjectDTO {
     private String linkedinURL;
     private List<CategoryDTO> categories;
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {

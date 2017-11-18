@@ -1,4 +1,6 @@
 spring:
+   jackson.serialization:
+      write_dates_as_timestamps: false
    application:
       name: proojec
    main:
@@ -17,7 +19,7 @@ spring:
                import_files:
 
    datasource:
-       url: jdbc:mysql://192.168.99.100:3306/proojec
+       url: jdbc:mysql://192.168.99.101:3306/proojec
        username: root
        password: Irl4nd42014
        driver-class-name: com.mysql.jdbc.Driver
@@ -32,6 +34,8 @@ logging:
         org.springframework.web: DEBUG
         org.springframework.security: DEBUG
         com.proojec: DEBUG
+        org.hibernate.SQL: DEBUG
+        org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 
 
 

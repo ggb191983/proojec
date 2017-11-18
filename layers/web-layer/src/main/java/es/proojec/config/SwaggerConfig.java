@@ -3,19 +3,19 @@ package es.proojec.config;
 import com.google.common.base.Predicate;
 import io.swagger.annotations.Api;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.ResponseEntity;
 import springfox.documentation.annotations.ApiIgnore;
 import springfox.documentation.builders.*;
 import springfox.documentation.service.*;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger.web.ApiKeyVehicle;
-import springfox.documentation.swagger.web.SecurityConfiguration;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static com.google.common.base.Predicates.or;
@@ -28,6 +28,7 @@ import static springfox.documentation.builders.PathSelectors.regex;
  */
 @Configuration
 @EnableSwagger2
+@ComponentScan("es.proojec")
 class SwaggerConfig {
 
     /**
@@ -38,46 +39,27 @@ class SwaggerConfig {
     @Bean
     public Docket projectApi() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("cygnus")
+                .groupName("api")
                 .apiInfo(apiInfo())
+                .directModelSubstitute(LocalDateTime.class, Date.class)
                 .select()
                 .apis(RequestHandlerSelectors.withClassAnnotation(Api.class))
                 .paths(PathSelectors.any())
                 .build()
                 .pathMapping("/")
-                .genericModelSubstitutes(ResponseEntity.class)
                 .useDefaultResponseMessages(false);
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Springfox petstore API")
-                .description("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum " +
-                        "has been the industry's standard dummy text ever since the 1500s, when an unknown printer "
-                        + "took a " +
-                        "galley of type and scrambled it to make a type specimen book. It has survived not only five " +
-                        "centuries, but also the leap into electronic typesetting, remaining essentially unchanged. " +
-                        "It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum " +
-                        "passages, and more recently with desktop publishing software like Aldus PageMaker including " +
-                        "versions of Lorem Ipsum.")
+                .title("Proojec API")
+                .description("We take the younger and more innovative ideas to meet business development needs through using students final projects.")
                 .termsOfServiceUrl("http://springfox.io")
-                .contact("springfox")
-                .license("Apache License Version 2.0")
-                .licenseUrl("https://github.com/springfox/springfox/blob/master/LICENSE")
+                .contact(new Contact("Proojec staff", "http://proojec.es", "info@proojec.es"))
+                .license("Proojec")
+                .licenseUrl("https://bitbucket.org/proojecteam/project_angular2/wiki/Home")
                 .version("0.1-SNAPSHOT")
                 .build();
-    }
-
-    @Bean
-    public Docket petApi() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("full-petstore-api")
-                .apiInfo(apiInfo())
-                .select()
-                .paths(petstorePaths())
-                .build()
-                .securitySchemes(newArrayList(oauth()))
-                .securityContexts(newArrayList(securityContext()));
     }
 
     @Bean
@@ -92,18 +74,9 @@ class SwaggerConfig {
                 .enableUrlTemplating(true);
     }
 
-    @Bean
-    public Docket multipartApi() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("multipart-api")
-                .apiInfo(apiInfo())
-                .select()
-                .paths(multipartPaths())
-                .build();
-    }
 
     private Predicate<String> categoryPaths() {
-        return regex("/category.*");
+        return regex("/api/v1/categories.*");
     }
 
     private Predicate<String> multipartPaths() {
@@ -192,10 +165,5 @@ class SwaggerConfig {
                 .loginEndpoint(new LoginEndpoint("http://petstore.swagger.io/api/oauth/dialog"))
                 .build();
         return newArrayList(grantType);
-    }
-
-    @Bean
-    public SecurityConfiguration securityInfo() {
-        return new SecurityConfiguration("abc", "123", "pets", "petstore", "123", ApiKeyVehicle.HEADER, "", ",");
     }
 }

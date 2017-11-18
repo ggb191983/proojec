@@ -38,6 +38,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
+                .antMatchers("/webjars/**").permitAll()
+                .antMatchers("/swagger-ui.html", "/swagger-resources/**", "/v2/**").permitAll()
                 .antMatchers("/callback", "/login", "/signup").permitAll()
                 .antMatchers("/api/**").fullyAuthenticated()
                 .and()

@@ -5,7 +5,7 @@ import org.springframework.data.annotation.ReadOnlyProperty;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -35,17 +35,14 @@ public class Challenge implements Serializable {
     @OneToMany(mappedBy = "challenge", cascade = CascadeType.ALL)
     private List<Comment> comments;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
-    private Date createdAt;
+    private LocalDateTime createdAt;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "end_application_date")
-    private Date endCandidatureDate;
+    private LocalDateTime endCandidatureDate;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "end_challenge_Date")
-    private Date endChallengeDate;
+    private LocalDateTime endChallengeDate;
 
     @OneToMany(mappedBy = "challenge", cascade = CascadeType.ALL)
     private List<Label> labels;
@@ -59,6 +56,14 @@ public class Challenge implements Serializable {
 
     @OneToMany(mappedBy = "challenge", cascade = CascadeType.ALL)
     private List<Application> applications;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;
@@ -132,27 +137,27 @@ public class Challenge implements Serializable {
         this.comments = comments;
     }
 
-    public Date getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Date getEndCandidatureDate() {
+    public LocalDateTime getEndCandidatureDate() {
         return endCandidatureDate;
     }
 
-    public void setEndCandidatureDate(Date endCandidatureDate) {
+    public void setEndCandidatureDate(LocalDateTime endCandidatureDate) {
         this.endCandidatureDate = endCandidatureDate;
     }
 
-    public Date getEndChallengeDate() {
+    public LocalDateTime getEndChallengeDate() {
         return endChallengeDate;
     }
 
-    public void setEndChallengeDate(Date endChallengeDate) {
+    public void setEndChallengeDate(LocalDateTime endChallengeDate) {
         this.endChallengeDate = endChallengeDate;
     }
 
